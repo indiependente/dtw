@@ -37,26 +37,26 @@ def dtw(x, y, dist=lambda x, y: norm(x - y, ord=1)):
 
     dist = D[-1, -1] / sum(D.shape)
 
-    return dist, D, _trackeback(D)
+    return dist
 
 
-def _trackeback(D):
-    i, j = array(D.shape) - 1
-    p, q = [i], [j]
-    while (i > 0 and j > 0):
-        tb = argmin((D[i-1, j-1], D[i-1, j], D[i, j-1]))
+# def _trackeback(D):
+#     i, j = array(D.shape) - 1
+#     p, q = [i], [j]
+#     while (i > 0 and j > 0):
+#         tb = argmin((D[i-1, j-1], D[i-1, j], D[i, j-1]))
 
-        if (tb == 0):
-            i = i - 1
-            j = j - 1
-        elif (tb == 1):
-            i = i - 1
-        elif (tb == 2):
-            j = j - 1
+#         if (tb == 0):
+#             i = i - 1
+#             j = j - 1
+#         elif (tb == 1):
+#             i = i - 1
+#         elif (tb == 2):
+#             j = j - 1
 
-        p.insert(0, i)
-        q.insert(0, j)
+#         p.insert(0, i)
+#         q.insert(0, j)
 
-    p.insert(0, 0)
-    q.insert(0, 0)
-    return (array(p), array(q))
+#     p.insert(0, 0)
+#     q.insert(0, 0)
+#     return (array(p), array(q))
